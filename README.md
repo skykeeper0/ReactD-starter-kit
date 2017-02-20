@@ -11,8 +11,9 @@ This is only a temporary solution. My goal is a hot reload combination of webpac
 
 P1: working on online mongodata base
     Create an online mongoose database
-    Create an login page: index.html
-    Set up file system:
+    Create an login page
+    Set up file system
+    
         client
             public: bundle.js + index.html - the one that get display
             src: index.js  Main js that bind React component
@@ -37,7 +38,6 @@ P2: Initial setup
     Test 2 above function with login page
     Test 2 above function with ajax request
     Rework
-
     Set up test
     Rework
 
