@@ -32,7 +32,7 @@ P1: working on online mongodata base
     Write test for it ?
         
         Write unit to test the data base function (controllers)
-        Test server
+        Test server - Done
         Test front-end (html file)
         Test React component
 
