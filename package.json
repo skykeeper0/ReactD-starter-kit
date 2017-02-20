@@ -2,9 +2,9 @@
   "name": "basicweb",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server/server.js",
     "watch": "webpack --watch"
   },
   "author": "Trung Dinh",

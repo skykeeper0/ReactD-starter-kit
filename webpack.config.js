@@ -2,18 +2,26 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: './main.js', // name of the top level file you want to include
+    // name of the top level file you want to include
+    entry: [
+      path.join(__dirname, 'client', 'src', 'index.js'),
+    ],
+    // the file you want webpack to build
     output: {
-        filename: 'bundle.js' // the file you want webpack to build
+      path: path.join(__dirname, 'client', 'public'),
+      filename: 'bundle.js',
     },
     // watch: true, // watch your files and when one of them changes, it will
     // immediately rerun the build and recreate the output files
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react']
+        }
       },
       {
 				test: /(\.css|\.scss)$/,
