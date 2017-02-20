@@ -29,7 +29,12 @@ P1: working on online mongodata base
     Run the server to test
     Send post request with login and password, the server response json data
 
-    Write test for it ? 
+    Write test for it ?
+        
+        Write unit to test the data base function (controllers)
+        Test server
+        Test front-end (html file)
+        Test React component
 
 P2: Initial setup    
     Create controller for the user 
