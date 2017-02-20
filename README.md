@@ -10,25 +10,25 @@ afther that we need to run webpack --watch on one terminal and running nodemon o
 This is only a temporary solution. My goal is a hot reload combination of webpack and express.
 
 P1: working on online mongodata base
-    Create an online mongoose database //
-    Create an login page // index.html
+    Create an online mongoose database
+    Create an login page: index.html
     Set up file system:
         client
-            public  //bundle.js + index.html - the one that get display
-            src  //index.js  Main js that bind React component
-               components // react components app.js...
+            public: bundle.js + index.html - the one that get display
+            src: index.js  Main js that bind React component
+               components: react components app.js...
         server
-            controller // controllers, middleware for the server
-            models // database models
-            dbConnection // where you set the dbConnection
-            server.js  // server file
+            controller: controllers, middleware for the server
+            models: database models
+            dbConnection: where you set the dbConnection
+            server.js: server file
     
-    Create a server at port 3000 with listen //
-    Set up an server that accept post request and response json data //
-    Run the server to test //
-    Send post request with login and password, the server response json data //
+    Create a server at port 3000 with listen
+    Set up an server that accept post request and response json data
+    Run the server to test
+    Send post request with login and password, the server response json data
 
-    Write test for it ? //
+    Write test for it ? 
 
 P2: Initial setup    
     Create controller for the user 
