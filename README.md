@@ -37,17 +37,28 @@ P1: working on online mongodata base
         Test React component
 
 P2: Initial setup    
-    Create controller for the user 
-    Create add user to data base in the controller
-    Create look up user at database in the controller
-    Test 2 above function with login page
+    Build mongo data base with 3 seperate files
+        dbConnection - set up connection: either local or online
+        models - where all models are contained
+        userModels - set up users collection in db with schema
+
+    Create controller for the user / 
+    Create add user to data base in the controller /
+    Create look up user at database in the controller /
+    Add password checking /
+
+
+    Test 2 above function with postman /
     Test 2 above function with ajax request
+
+    Build a sign up html page with react router?
+
     Rework
-    Set up test
+    Set up test for the controller
     Rework
 
-    
-p2: Add cookie and authentication
+    result Have database and controller working
+p3: Build route with react router
     
 
 
