@@ -11,7 +11,7 @@ const should = chai.should();
 chai.use(chaiHttp)
 
 
-describe('checking data base and connection', () => {
+describe('checking data base and connection', () => { 
     //before Each to delete to make sure the testDb is empty
     before((done) => {
         User
@@ -47,6 +47,21 @@ describe('checking data base and connection', () => {
 
     //Test the /POST route
     describe('POST /signup', () => {
+        before((done) => {
+            User
+                .create({
+                username: "Deep1",
+                password: "1232"
+            }).then ( (err) => {
+                User.create({
+                    username: 'dep',
+                    password: '123'
+                }).then( (err2) => {
+                    done();
+                })
+            })
+        })
+
         it('it should be able to create User in testDb', (done) => {
             let new_user = {
                 username: "Deep",
@@ -60,37 +75,89 @@ describe('checking data base and connection', () => {
                     res.body.should.be.a('object');
                     res.body.should.have.property('username').eql('Deep');
                     res.body.should.have.property('password').eql("123");
+                done();
                 })
-
-            let user2 = {
-                username: "Deep1",
-                password: "1232"
-            }
-
-            let user3 = {
-                username: "Deep23",
-                password: "123223"
-            }
-
-            User.create(user2)
-            User.create(user3)
-
-            done();
-         })
-    
-        it('add more user shouldnt overwrite the first game', (done) => {
-
-            User.find({})
-                .then( (result) => {
-                    console.log(result)
-            })
-
-            done();
         })
 
+        it('new user shouldnt overlap old user', (done) => {
+            User.find()
+                .then( (result) => {
+                    result.should.be.a('array');
+                    result.length.should.eql(3);
+                    done();
+            })
+        })
     })
 
-    //Add some data to the userbase
-    
-    //Test the login, shouldn't let people 
+    describe('POST /login' , () => {
+        before( (done) => {
+            User
+                .create({
+                username: "Deep1",
+                password: "1232"
+            }).then ( (err) => {
+                User.create({
+                    username: 'dep',
+                    password: '123'
+                }).then( (err2) => {
+                    User.create({
+                        username: 'Deep2',
+                        password: '1234'
+                    }).then( (err3) => {
+                        done();
+                    })
+                })
+            })
+        })
+
+        it('login user should be able to login with right name and password', (done) => {
+            chai.request(server)
+                .post('/login')
+                .send({
+                    username: 'dep',
+                    password: '123'
+                })
+                .end( (err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('username').eql('dep');
+                    res.body.should.have.property('password').eql("123");
+                done();
+                })
+        })
+
+        it('login with the wrong password cant access', (done) => {
+            chai.request(server)
+                .post('/login')
+                .send({
+                    username: 'dep',
+                    password: '1234'
+                })
+                .end( (err, res) => {
+                    res.should.have.status(401);
+                    res.type.should.be.a('string');
+                    res.text.should.be.equal('Wrong password');
+                done();
+                })
+        })
+    })
+
+    describe('POST /secret' , () => {
+
+        it('should be able to display all the user', (done) => {
+            chai.request(server)
+                .post('/secret')
+                .send({
+                    username: 'dep',
+                    password: '123'
+                })
+                .end( (err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('array');
+                    res.body.length.should.be.eql(6);
+                done();
+                })
+        })
+        
+    })
 })

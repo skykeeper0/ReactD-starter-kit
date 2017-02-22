@@ -23,13 +23,23 @@ const userControllers = {
                     if (user.password === req.body.password) {
                         res.json(user)
                     } else {
-                        res.send('Wrong password')
+                        res.status(401).send('Wrong password')
                     }
                 } else {
                     res.status(401).send('There are no such user')
                 }
             }).catch( (err) => {
                 res.status(500).send(err)
+            })
+    },
+
+    getUser(req, res, nect) {
+        
+        User
+            .find({})
+            .exec( (err, users) => {
+                if (err) res.send(err);
+                res.json(users);
             })
     }
 }
