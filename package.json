@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "NODE_ENV=dev nodemon server/server.js",
     "watch": "webpack --watch",
     "test": "mocha --timeout 2000 test/"
   },

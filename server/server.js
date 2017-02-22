@@ -23,11 +23,8 @@ app.get('/', (req, res) => {
 
 
 const server = app.listen(port, () => {
-    console.log('Server listen on port ',port)
+    console.log('Server listen on port',port)
+    console.log(config.DBHost)
 });
 
-const closeSever = function(){
-    server.close();
-}
-
-module.exports = {closeSever};
+module.exports = server;
