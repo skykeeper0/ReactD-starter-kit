@@ -32,22 +32,34 @@ P1: working on online mongodata base
     Write test for it ?
         
         Write unit to test the data base function (controllers)
-        Test server
+        Test server - Done
         Test front-end (html file)
         Test React component
 
 P2: Initial setup    
-    Create controller for the user 
-    Create add user to data base in the controller
-    Create look up user at database in the controller
-    Test 2 above function with login page
+    Build mongo data base with 3 seperate files
+        dbConnection - set up connection: either local or online
+        models - where all models are contained
+        userModels - set up users collection in db with schema
+
+    Create controller for the user / 
+    Create add user to data base in the controller /
+    Create look up user at database in the controller /
+    Add password checking /
+
+
+    Test 2 above function with postman /
     Test 2 above function with ajax request
+
+
     Rework
-    Set up test
+    Set up test for the controller
     Rework
 
+    result Have database and controller working
     
-p2: Add cookie and authentication
+p3: Build route with react router
+    Build a sign up html page with react router?
     
 
 

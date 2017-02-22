@@ -1,21 +1,30 @@
 const express = require('express');
 const path = require('path');
-const app = express();
 const bodyParser = require('body-parser');
+const userControllers = require('./controllers/userControllers')
+const port = 3000;
+const config = require('config');
 
+// initialize express
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
-app.use(express.static(__dirname + './../client/public'))
+app.use('/', express.static(__dirname + './../client/public'));
 
-app.post('/login', (req, res) => {
-    res.json(req.body);
-})
+
+app.post('/login', userControllers.findUser)
+
+app.post('/signup', userControllers.createUser)
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'../client/public/index.html'))
 })
 
-app.listen(3000, () => {
-    console.log('Server listen on port 3000')
-})
+
+const server = app.listen(port, () => {
+    console.log('Server listen on port',port)
+    console.log(config.DBHost)
+});
+
+module.exports = server;
