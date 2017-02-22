@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const userControllers = require('./controllers/userControllers')
+const port = 3000;
+const config = require('config');
 
 // initialize express
 const app = express();
@@ -9,6 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use('/', express.static(__dirname + './../client/public'));
+
 
 app.post('/login', userControllers.findUser)
 
@@ -19,8 +22,8 @@ app.get('/', (req, res) => {
 })
 
 
-const server = app.listen(3000, () => {
-    console.log('Server listen on port 3000')
+const server = app.listen(port, () => {
+    console.log('Server listen on port ',port)
 });
 
 const closeSever = function(){

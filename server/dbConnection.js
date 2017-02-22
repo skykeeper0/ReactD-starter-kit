@@ -1,6 +1,7 @@
 // where you set up the connection prep
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+const config = require('config')
 
 
 //online conection to mlab, timeout problem
@@ -11,9 +12,9 @@ mongoose.Promise = require('bluebird');
 
 
 // connection to local database 
-const db = mongoose.connect('mongodb://localhost/local', (err) => {
+const db = mongoose.connect(config.DBHost, (err) => {
     if (err) console.log('There an err in db connection');
-    console.log('Connected to mlab mongodb')
+    console.log('Connected to mongodb database')
 });
 
 module.exports = db;
