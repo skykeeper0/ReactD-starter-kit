@@ -60,7 +60,11 @@ describe('checking data base and connection', () => {
                     res.body.should.be.a('object');
                     res.body.should.have.property('username').eql('Deep');
                     res.body.should.have.property('password').eql("123");
+                done();
                 })
+        })
+
+        it('add more user shouldnt overwrite the first game', (done) => {
 
             let user2 = {
                 username: "Deep1",
@@ -72,15 +76,17 @@ describe('checking data base and connection', () => {
                 password: "123223"
             }
 
-            User.create(user2)
-            User.create(user3)
+            chai.request(server)
+                .post('/signup')
+                .send(user2)
+                .end((err, res) => {
+                    // res.should.have.status(200);
+                    // res.body.should.be.a('object');
+                    // res.body.should.have.property('username').eql('Deep');
+                    // res.body.should.have.property('password').eql("123");
+                })
 
-            done();
-         })
-    
-        it('add more user shouldnt overwrite the first game', (done) => {
-
-            User.find({})
+            User.find()
                 .then( (result) => {
                     console.log(result)
             })
