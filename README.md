@@ -50,15 +50,14 @@ P2: Initial setup
 
 
     Test 2 above function with postman /
-    Test 2 above function with ajax request
-    Install knex for NODE_ENV swap
+    Test 2 above function with ajax request/
 
 
     Rework
-    Set up test for the controller, database, future route
+    Set up test for the controller, database/
     Rework
 
-    result Have database and controller working
+    result Have database and controller working/
     
 p3: Build route with react router
     Build a sign up html page with react router?
