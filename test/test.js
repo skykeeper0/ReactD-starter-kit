@@ -90,7 +90,58 @@ describe('checking data base and connection', () => {
         })
     })
 
-    //Add some data to the userbase
-    
-    //Test the login, shouldn't let people 
+    describe('POST /login' , () => {
+        before( (done) => {
+            User
+                .create({
+                username: "Deep1",
+                password: "1232"
+            }).then ( (err) => {
+                User.create({
+                    username: 'dep',
+                    password: '123'
+                }).then( (err2) => {
+                    User.create({
+                        username: 'Deep2',
+                        password: '1234'
+                    }).then( (err3) => {
+                        done();
+                    })
+                })
+            })
+        })
+
+        it('login user should be able to login with right name and password', (done) => {
+            chai.request(server)
+                .post('/login')
+                .send({
+                    username: 'dep',
+                    password: '123'
+                })
+                .end( (err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('username').eql('dep');
+                    res.body.should.have.property('password').eql("123");
+                done();
+                })
+        })
+
+        it('login with the wrong password cant access', (done) => {
+            chai.request(server)
+                .post('/login')
+                .send({
+                    username: 'dep',
+                    password: '1234'
+                })
+                .end( (err, res) => {
+                    res.should.have.status(401);
+                    res.type.should.be.a('string');
+                    res.text.should.be.equal('Wrong password');
+                done();
+                })
+        })
+
+        
+    })
 })
