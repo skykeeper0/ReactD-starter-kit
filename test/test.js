@@ -60,7 +60,6 @@ describe('checking data base and connection', () => {
                     done();
                 })
             })
-            // done();
         })
 
         it('it should be able to create User in testDb', (done) => {
@@ -141,7 +140,24 @@ describe('checking data base and connection', () => {
                 done();
                 })
         })
+    })
 
+    describe('POST /secret' , () => {
+
+        it('should be able to display all the user', (done) => {
+            chai.request(server)
+                .post('/secret')
+                .send({
+                    username: 'dep',
+                    password: '123'
+                })
+                .end( (err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('array');
+                    res.body.length.should.be.eql(6);
+                done();
+                })
+        })
         
     })
 })
