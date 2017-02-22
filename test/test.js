@@ -13,7 +13,7 @@ chai.use(chaiHttp)
 
 describe('checking data base and connection', () => {
     //before Each to delete to make sure the testDb is empty
-    beforeEach((done) => {
+    before((done) => {
         User
             .remove({},(err) => {
                 done();
@@ -22,7 +22,7 @@ describe('checking data base and connection', () => {
 
 
     //checking the database for anything
-    describe('checking if the collection is empty', () => {
+    describe('Check database after clear it out', () => {
         it('it should return an empty collection', (done) => {
             User
                 .find()
@@ -30,11 +30,6 @@ describe('checking data base and connection', () => {
                     user.length.should.eql(0);
                     done();
                 })
-
-            // User.all( (err, user) => {
-            //     user.length.should.eql(0);
-            //     done();
-            // })
         })
     })
 
@@ -65,8 +60,37 @@ describe('checking data base and connection', () => {
                     res.body.should.be.a('object');
                     res.body.should.have.property('username').eql('Deep');
                     res.body.should.have.property('password').eql("123");
-                done();
                 })
+
+            let user2 = {
+                username: "Deep1",
+                password: "1232"
+            }
+
+            let user3 = {
+                username: "Deep23",
+                password: "123223"
+            }
+
+            User.create(user2)
+            User.create(user3)
+
+            done();
+         })
+    
+        it('add more user shouldnt overwrite the first game', (done) => {
+
+            User.find({})
+                .then( (result) => {
+                    console.log(result)
+            })
+
+            done();
         })
+
     })
+
+    //Add some data to the userbase
+    
+    //Test the login, shouldn't let people 
 })
