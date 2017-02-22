@@ -43,17 +43,19 @@ P2: Initial setup
         userModels - set up users collection in db with schema
 
     Create controller for the user / 
-    Create add user to data base in the controller /
-    Create look up user at database in the controller /
+    Create add user controller /
+    Create look up user controller /
+    Create get users the controllers/
     Add password checking /
 
 
     Test 2 above function with postman /
     Test 2 above function with ajax request
+    Install knex for NODE_ENV swap
 
 
     Rework
-    Set up test for the controller
+    Set up test for the controller, database, future route
     Rework
 
     result Have database and controller working

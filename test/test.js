@@ -11,7 +11,7 @@ const should = chai.should();
 chai.use(chaiHttp)
 
 
-describe('checking data base and connection', () => {
+describe('checking data base and connection', () => { 
     //before Each to delete to make sure the testDb is empty
     before((done) => {
         User
@@ -52,7 +52,15 @@ describe('checking data base and connection', () => {
                 .create({
                 username: "Deep1",
                 password: "1232"
+            }).then ( (err) => {
+                User.create({
+                    username: 'dep',
+                    password: '123'
+                }).then( (err2) => {
+                    done();
+                })
             })
+            // done();
         })
 
         it('it should be able to create User in testDb', (done) => {
@@ -72,36 +80,14 @@ describe('checking data base and connection', () => {
                 })
         })
 
-        it('add more user shouldnt overwrite the first user', (done) => {
-
-            // let user2 = {
-            //     username: "Deep1",
-            //     password: "1232"
-            // }
-
-            // let user3 = {
-            //     username: "Deep23",
-            //     password: "123223"
-            // }
-
-            // chai.request(server)
-            //     .post('/signup')
-            //     .send(user2)
-            //     .end((err, res) => {
-            //         // res.should.have.status(200);
-            //         // res.body.should.be.a('object');
-            //         // res.body.should.have.property('username').eql('Deep');
-            //         // res.body.should.have.property('password').eql("123");
-            //     })
-
+        it('new user shouldnt overlap old user', (done) => {
             User.find()
                 .then( (result) => {
-                    console.log(result)
+                    result.should.be.a('array');
+                    result.length.should.eql(3);
+                    done();
             })
-
-            done();
         })
-
     })
 
     //Add some data to the userbase
