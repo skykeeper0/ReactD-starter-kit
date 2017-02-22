@@ -17,6 +17,8 @@ app.post('/login', userControllers.findUser)
 
 app.post('/signup', userControllers.createUser)
 
+app.get('/secret', userControllers.getUser)
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'../client/public/index.html'))
 })

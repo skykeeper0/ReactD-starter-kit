@@ -47,6 +47,14 @@ describe('checking data base and connection', () => {
 
     //Test the /POST route
     describe('POST /signup', () => {
+        before((done) => {
+            User
+                .create({
+                username: "Deep1",
+                password: "1232"
+            })
+        })
+
         it('it should be able to create User in testDb', (done) => {
             let new_user = {
                 username: "Deep",
@@ -64,27 +72,27 @@ describe('checking data base and connection', () => {
                 })
         })
 
-        it('add more user shouldnt overwrite the first game', (done) => {
+        it('add more user shouldnt overwrite the first user', (done) => {
 
-            let user2 = {
-                username: "Deep1",
-                password: "1232"
-            }
+            // let user2 = {
+            //     username: "Deep1",
+            //     password: "1232"
+            // }
 
-            let user3 = {
-                username: "Deep23",
-                password: "123223"
-            }
+            // let user3 = {
+            //     username: "Deep23",
+            //     password: "123223"
+            // }
 
-            chai.request(server)
-                .post('/signup')
-                .send(user2)
-                .end((err, res) => {
-                    // res.should.have.status(200);
-                    // res.body.should.be.a('object');
-                    // res.body.should.have.property('username').eql('Deep');
-                    // res.body.should.have.property('password').eql("123");
-                })
+            // chai.request(server)
+            //     .post('/signup')
+            //     .send(user2)
+            //     .end((err, res) => {
+            //         // res.should.have.status(200);
+            //         // res.body.should.be.a('object');
+            //         // res.body.should.have.property('username').eql('Deep');
+            //         // res.body.should.have.property('password').eql("123");
+            //     })
 
             User.find()
                 .then( (result) => {

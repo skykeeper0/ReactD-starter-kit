@@ -31,6 +31,16 @@ const userControllers = {
             }).catch( (err) => {
                 res.status(500).send(err)
             })
+    },
+
+    getUser(req, res, nect) {
+        
+        User
+            .find({})
+            .exec( (err, users) => {
+                if (err) res.send(err);
+                res.json(users);
+            })
     }
 }
 
