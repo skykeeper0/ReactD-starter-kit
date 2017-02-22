@@ -59,9 +59,13 @@ P2: Initial setup
 
     result Have database and controller working/
     
-p3: Build route with react router
+p3: Set up React component
+    Build route with react router
     Build a sign up html page with react router?
+
+    Make 
     
+    Add authencation, bcrypt, cookie, session
 
 
 
