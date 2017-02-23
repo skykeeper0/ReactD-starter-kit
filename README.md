@@ -59,11 +59,11 @@ P2: Initial setup
 
     result Have database and controller working/
     
-p3: Set up React component
+p3: Set up React component structure
         app
-            Signup
-            login
-            Secret
+            Signup - sign up data with form
+            login - login in data with form
+            Secret - display all the data
 
     Note: add test for error too ( wrong input type ?)
           seperate server running on test
