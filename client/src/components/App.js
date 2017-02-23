@@ -15,13 +15,27 @@ class App extends Component {
 
     /* when the sign up button is clicked the e get all the data from the form and use request to send request with data to server*/
     signupUser(e){
+        const signupUser = {
+            username: e.target[0].value,
+            password: e.target[1].value
+        }
+
+        //send a post request
 
     }
 
     /* when the sign up button is clicked the e get all the data from the form and use request to send request with data to server*/
     loginUser(e){
+        const loginUser = {
+            username: e.target[0].value,
+            password: e.target[1].value
+        }
 
+        //send a post request
+        
     }
+
+    //How to pass 2 above function to the components?
 
     render() {
         return (
