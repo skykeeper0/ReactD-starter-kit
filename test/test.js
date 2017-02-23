@@ -89,6 +89,7 @@ describe('checking data base and connection', () => {
         })
     })
 
+    //people access for /login
     describe('POST /login' , () => {
         before( (done) => {
             User
@@ -142,6 +143,7 @@ describe('checking data base and connection', () => {
         })
     })
 
+    //showing user whenever post to /secret
     describe('POST /secret' , () => {
 
         it('should be able to display all the user', (done) => {

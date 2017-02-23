@@ -50,19 +50,33 @@ P2: Initial setup
 
 
     Test 2 above function with postman /
-    Test 2 above function with ajax request
-    Install knex for NODE_ENV swap
+    Test 2 above function with ajax request/
 
 
     Rework
-    Set up test for the controller, database, future route
+    Set up test for the controller, database/
     Rework
 
-    result Have database and controller working
+    result Have database and controller working/
     
-p3: Build route with react router
+p3: Set up React component structure
+        app
+            Signup - sign up data with form
+            login - login in data with form
+            Secret - display all the data
+
+    Note: add test for error too ( wrong input type ?)
+          seperate server running on test
+
+    Re-create log in page as react component
+    
+
+    Build route with react router
     Build a sign up html page with react router?
+
+    Make 
     
+    Add authencation, bcrypt, cookie, session
 
 
 
