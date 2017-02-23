@@ -65,6 +65,9 @@ p3: Set up React component structure
             login - login in data with form
             Secret - display all the data
 
+    With react-router 4 and arrow funciton to pass props from app to signup, login, secret
+    <Route exact path='/' component={() => (<Login value='life' handleClick={() => this.handleClick()} />)}/>
+
     Note: add test for error too ( wrong input type ?)
           seperate server running on test
 

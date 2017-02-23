@@ -11,31 +11,36 @@ class App extends Component {
     // App is the center component that hold the state
     constructor() {
         super()
+        // this.handleClick = this.handleClick.bind(this)
     }
 
     /* when the sign up button is clicked the e get all the data from the form and use request to send request with data to server*/
-    signupUser(e){
-        const signupUser = {
-            username: e.target[0].value,
-            password: e.target[1].value
-        }
+    // signupUser(e){
+    //     const signupUser = {
+    //         username: e.target[0].value,
+    //         password: e.target[1].value
+    //     }
 
-        //send a post request
+    //     //send a post request
 
-    }
+    // }
 
     /* when the sign up button is clicked the e get all the data from the form and use request to send request with data to server*/
-    loginUser(e){
-        const loginUser = {
-            username: e.target[0].value,
-            password: e.target[1].value
-        }
+    // loginUser(e){
+    //     const loginUser = {
+    //         username: e.target[0].value,
+    //         password: e.target[1].value
+    //     }
 
-        //send a post request
-        
-    }
+    //     //send a post request
+
+    // }
 
     //How to pass 2 above function to the components?
+
+    handleClick(i = 'not passed') {
+        console.log('clicked ',i)
+    }
 
     render() {
         return (
@@ -47,7 +52,8 @@ class App extends Component {
                         <li><Link to='/signup' >Sign up</Link></li>
                     </ul>
                     <hr/>
-                        <Route exact path='/' component={Login} />
+                        <Route exact path='/' component={() => (<Login value='life' handleClick={(i) => this.handleClick(i)} />)} />
+                        {/*<Route exact path='/' component={() => (<Login value='life' handleClick={this.handleClick}/>)} />*/}
                         <Route path='/signup' component={Signup} />
                         <Route path='/secret' component={Secret} />
                 </div>
