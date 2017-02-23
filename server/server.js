@@ -24,9 +24,9 @@ app.get('/', (req, res) => {
 })
 
 
-const server = app.listen(port, () => {
+app.listen(port, () => {
     console.log('Server listen on port',port)
     console.log(config.DBHost)
 });
 
-module.exports = server;
+module.exports = app;

@@ -60,6 +60,17 @@ P2: Initial setup
     result Have database and controller working/
     
 p3: Set up React component
+        app
+            Signup
+            login
+            Secret
+
+    Note: add test for error too ( wrong input type ?)
+          seperate server running on test
+
+    Re-create log in page as react component
+    
+
     Build route with react router
     Build a sign up html page with react router?
 
