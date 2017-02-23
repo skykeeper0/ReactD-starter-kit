@@ -38,8 +38,8 @@ class App extends Component {
 
     //How to pass 2 above function to the components?
 
-    handleClick(i = 'not passed') {
-        console.log('clicked ',i)
+    handleClick(i = 'not passed', j = 'not passed') {
+        console.log('username is ',i, ' password is ',j)
     }
 
     render() {
@@ -52,8 +52,7 @@ class App extends Component {
                         <li><Link to='/signup' >Sign up</Link></li>
                     </ul>
                     <hr/>
-                        <Route exact path='/' component={() => (<Login value='life' handleClick={(i) => this.handleClick(i)} />)} />
-                        {/*<Route exact path='/' component={() => (<Login value='life' handleClick={this.handleClick}/>)} />*/}
+                        <Route exact path='/' component={() => (<Login signin={(i,j) => this.handleClick(i,j)} />)} />
                         <Route path='/signup' component={Signup} />
                         <Route path='/secret' component={Secret} />
                 </div>
