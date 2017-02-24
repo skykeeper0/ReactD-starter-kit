@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Link, Route, Redirect, withRouter, PrivateRoute } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Redirect, withRouter } from 'react-router-dom';
 // import { Match, BrowserRouter, Link} from 'react-router';
 import Login from './Login';
 import Signup from './Signup';
@@ -14,9 +14,25 @@ class App extends Component {
         super()
         // this.handleClick = this.handleClick.bind(this)
         this.state = {
-            loggedIn: false
+            loggedIn: false,
+            data: []
         }
     }
+
+    // at the beginning, app send a get request to grapp all the user from data base and 
+    // put it into data
+    componentWillMount() {
+        fetch('/secret')
+            .then(response => response.json())
+            .then(data => {
+                let new_data = data;
+                this.setState({
+                    data : new_data
+                });
+                console.log(this.state.data)
+            });
+    }
+
 
     /* when the sign up button is clicked the e get all the data from the form and use request to send request with data to server*/
     signupUser(username, password){
@@ -62,24 +78,26 @@ class App extends Component {
             } else {
                 console.log('Bad type');
             }
-        }).catch((res) => {
-            console.log('err');
+        }).catch((err) => {
+            console.log('err: ', err);
         })
     }
 
     render() {
+        console.log(this.state.data)
+
         return (
             <BrowserRouter>
                 <div>
                     <ul>
                         <li><Link to='/' >Log in</Link></li>
-                        {/*<li><Link to='/secret' >Secret</Link></li>*/}
+                        <li><Link to='/secret' >Secret</Link></li>
                         <li><Link to='/signup' >Sign up</Link></li>
                     </ul>
                     <hr/>
                         <Route exact path='/' component={() => (<Login loggedIn={this.state.loggedIn} login={(i,j) => this.loginUser(i,j)} />)} />
                         <Route path='/signup' component={() => (<Signup signup={(i,j) => this.signupUser(i,j)} />)} />
-                        <Route path='/secret' component={Secret} />
+                        <Route path='/secret' component={() => (<Secret data={this.state.data}/>)} />
                 </div>
             </BrowserRouter>
         )
