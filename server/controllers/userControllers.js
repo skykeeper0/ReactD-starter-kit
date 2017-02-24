@@ -7,8 +7,11 @@ const userControllers = {
                 username: req.body.username,
                 password: req.body.password
             }).then( (user) => {
-                res.json(user)
+                console.log('user created')
+                res.redirect('http://localhost:3000/secret')
+                // res.json(user)
             }).catch( (err) => {
+                console.log('cant create user')
                 res.send('Cant create user')
             })
     },
@@ -21,11 +24,15 @@ const userControllers = {
             }).then( (user) => {
                 if (user) {
                     if (user.password === req.body.password) {
-                        res.json(user)
+                        console.log('got access')
+                        res.redirect('../secret')
+                        // res.json(user)
                     } else {
+                        console.log('wrong password')
                         res.status(401).send('Wrong password')
                     }
                 } else {
+                    console.log('There are no such users')
                     res.status(401).send('There are no such user')
                 }
             }).catch( (err) => {
