@@ -8,11 +8,13 @@ const userControllers = {
                 password: req.body.password
             }).then( (user) => {
                 console.log('user created')
-                res.redirect('http://localhost:3000/secret')
+                // res.redirect('http://localhost:3000/secret')
                 // res.json(user)
+                res.status(200).end();
             }).catch( (err) => {
                 console.log('cant create user')
-                res.send('Cant create user')
+                // res.send('Cant create user')
+                res.status(406).end()
             })
     },
 
@@ -25,7 +27,8 @@ const userControllers = {
                 if (user) {
                     if (user.password === req.body.password) {
                         console.log('got access')
-                        res.redirect('../secret')
+                        // res.redirect('../secret')
+                        res.status(200).end();
                         // res.json(user)
                     } else {
                         console.log('wrong password')
@@ -33,7 +36,7 @@ const userControllers = {
                     }
                 } else {
                     console.log('There are no such users')
-                    res.status(401).send('There are no such user')
+                    res.status(404).send('There are no such user')
                 }
             }).catch( (err) => {
                 res.status(500).send(err)
@@ -46,7 +49,7 @@ const userControllers = {
             .find({})
             .exec( (err, users) => {
                 if (err) res.send(err);
-                res.json(users);
+                res.json(users).end();
             })
     }
 }
