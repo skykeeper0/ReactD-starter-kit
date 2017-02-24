@@ -16,7 +16,6 @@ class Login extends Component {
     }
 
     render() {
-        let i = 1879;
         return (
             <div>
                 <h2>Log in</h2>-

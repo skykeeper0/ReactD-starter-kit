@@ -68,10 +68,13 @@ p3: Set up React component structure
     With react-router 4 and arrow funciton to pass props from app to signup, login, secret
     <Route exact path='/' component={() => (<Login value='life' handleClick={() => this.handleClick()} />)}/>
 
+    Use react-router 4 to add redirect 
+
+    Add refirect to the login page
+
     Note: add test for error too ( wrong input type ?)
           seperate server running on test
 
-    Re-create log in page as react component
     
 
     Build route with react router

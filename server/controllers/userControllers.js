@@ -8,7 +8,8 @@ const userControllers = {
                 password: req.body.password
             }).then( (user) => {
                 console.log('user created')
-                res.json(user)
+                res.redirect('http://localhost:3000/secret')
+                // res.json(user)
             }).catch( (err) => {
                 console.log('cant create user')
                 res.send('Cant create user')
@@ -24,7 +25,8 @@ const userControllers = {
                 if (user) {
                     if (user.password === req.body.password) {
                         console.log('got access')
-                        res.json(user)
+                        res.redirect('../secret')
+                        // res.json(user)
                     } else {
                         console.log('wrong password')
                         res.status(401).send('Wrong password')
