@@ -5,6 +5,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Secret from './Secret';
 // import NotFound from './NotFound';
+const request = require('request')
 
 class App extends Component {
 
@@ -15,31 +16,31 @@ class App extends Component {
     }
 
     /* when the sign up button is clicked the e get all the data from the form and use request to send request with data to server*/
-    // signupUser(e){
-    //     const signupUser = {
-    //         username: e.target[0].value,
-    //         password: e.target[1].value
-    //     }
+    signupUser(username, password){
+        const signupUser = {
+            username: username,
+            password: password
+        }
 
-    //     //send a post request
+        //send a post request
+        request
+            .post('http://localhost:3000/signup')
+            .form(signupUser)
 
-    // }
+    }
 
     /* when the sign up button is clicked the e get all the data from the form and use request to send request with data to server*/
-    // loginUser(e){
-    //     const loginUser = {
-    //         username: e.target[0].value,
-    //         password: e.target[1].value
-    //     }
+    loginUser(username, password){
+        const loginUser = {
+            username: username,
+            password: password
+        }
 
-    //     //send a post request
+        //send a post request
+        request
+            .post('http://localhost:3000/login')
+            .form(loginUser)
 
-    // }
-
-    //How to pass 2 above function to the components?
-
-    handleClick(i = 'not passed', j = 'not passed') {
-        console.log('username is ',i, ' password is ',j)
     }
 
     render() {
@@ -52,8 +53,8 @@ class App extends Component {
                         <li><Link to='/signup' >Sign up</Link></li>
                     </ul>
                     <hr/>
-                        <Route exact path='/' component={() => (<Login signin={(i,j) => this.handleClick(i,j)} />)} />
-                        <Route path='/signup' component={Signup} />
+                        <Route exact path='/' component={() => (<Login login={(i,j) => this.loginUser(i,j)} />)} />
+                        <Route path='/signup' component={() => (<Signup signup={(i,j) => this.signupUser(i,j)} />)} />
                         <Route path='/secret' component={Secret} />
                 </div>
             </BrowserRouter>

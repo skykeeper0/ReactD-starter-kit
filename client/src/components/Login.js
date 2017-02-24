@@ -12,7 +12,7 @@ class Login extends Component {
         let username = e.target[0].value;
         let password = e.target[1].value;
 
-        this.props.signin(username, password)
+        this.props.login(username, password)
     }
 
     render() {
