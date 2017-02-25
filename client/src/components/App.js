@@ -12,7 +12,7 @@ class App extends Component {
     // App is the center component that hold the state
     constructor() {
         super()
-        // this.handleClick = this.handleClick.bind(this)
+        // this.giveAccess = this.giveAccess.bind(this)
         this.state = {
             loggedIn: false,
             data: []
@@ -41,12 +41,29 @@ class App extends Component {
             password: password
         }
 
-        //send a post request
-        request
-            .post('http://localhost:3000/signup')
-            .form(signupUser)
-
+        fetch('/signup', {
+            method: 'post',
+            body: JSON.stringify({
+                username,
+                password
+            }),
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then((res) => {
+            if (res.status == 200) {
+                this.setState({
+                    loggedIn: true
+                })
+            } else {
+                console.log('Bad type');
+            }
+        }).catch((err) => {
+            console.log('err: ', err);
+        })
     }
+
+
 
     /* when the sign up button is clicked the e get all the data from the form and use request to send request with data to server*/
     loginUser(username, password){
@@ -83,6 +100,8 @@ class App extends Component {
         })
     }
 
+
+
     render() {
         console.log(this.state.data)
 
@@ -96,7 +115,7 @@ class App extends Component {
                     </ul>
                     <hr/>
                         <Route exact path='/' component={() => (<Login loggedIn={this.state.loggedIn} login={(i,j) => this.loginUser(i,j)} />)} />
-                        <Route path='/signup' component={() => (<Signup signup={(i,j) => this.signupUser(i,j)} />)} />
+                        <Route path='/signup' component={() => (<Signup loggedIn={this.state.loggedIn} signup={(i,j) => this.signupUser(i,j)} />)} />
                         <Route path='/secret' component={() => (<Secret data={this.state.data}/>)} />
                 </div>
             </BrowserRouter>

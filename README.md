@@ -79,7 +79,9 @@ p3: Set up React component structure
 
     Fetch data from server with '/get' request and /
 
-    React router path and get request
+    React router path and get request/
+
+    Learn how to 
     
 
     Build route with react router
